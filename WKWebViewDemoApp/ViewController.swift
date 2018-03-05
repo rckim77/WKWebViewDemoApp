@@ -18,11 +18,13 @@ class ViewController: UIViewController {
 
         view.addSubview(webView)
 
+        let layoutGuide = view.safeAreaLayoutGuide
+
         webView.translatesAutoresizingMaskIntoConstraints = false
-        webView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        webView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        webView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        webView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor).isActive = true
+        webView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
+        webView.topAnchor.constraint(equalTo: layoutGuide.topAnchor).isActive = true
+        webView.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor).isActive = true
 
         if let url = URL(string: "https://www.apple.com") {
             webView.load(URLRequest(url: url))
