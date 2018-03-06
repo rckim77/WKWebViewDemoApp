@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         let userContentController = WKUserContentController()
 
         // Add script message handlers that, when run, will make the function
-        // window.webkit.messageHandlers.<name>.postMessage() available in all frames.
+        // window.webkit.messageHandlers.test.postMessage() available in all frames.
         userContentController.add(self, name: "test")
         
         config.userContentController = userContentController
