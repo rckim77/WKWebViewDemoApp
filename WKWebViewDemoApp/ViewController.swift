@@ -42,7 +42,8 @@ class ViewController: UIViewController {
         webView.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor).isActive = true
 
         // Make sure in Info.plist you set `NSAllowsArbitraryLoads` to `YES` to load
-        // URLs with an HTTP connection.
+        // URLs with an HTTP connection. You can run a local server easily with services
+        // such as MAMP.
         if let url = URL(string: "http://localhost:8888/test.html") {
             webView.load(URLRequest(url: url))
         }
