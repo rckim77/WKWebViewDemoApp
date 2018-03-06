@@ -16,19 +16,18 @@ class ViewController: UIViewController {
 
         let config = WKWebViewConfiguration()
         let userContentController = WKUserContentController()
-        
-        config.userContentController = userContentController
-
-        // Load a local file containing JavaScript code as a string.
-        guard let scriptPath = Bundle.main.path(forResource: "script", ofType: "js"),
-            let scriptSource = try? String(contentsOfFile: scriptPath) else { return }
-
-        let userScript = WKUserScript(source: scriptSource, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
-        userContentController.addUserScript(userScript)
 
         // Add script message handlers that, when run, will make the function
         // window.webkit.messageHandlers.<name>.postMessage() available in all frames.
         userContentController.add(self, name: "test")
+        
+        config.userContentController = userContentController
+
+        // Inject JavaScript into the webpage. You can specify when your script will be injected and for
+        // which frames–all frames or the main frame only.
+        let scriptSource = "window.webkit.messageHandlers.test.postMessage(`Hello, world!`);"
+        let userScript = WKUserScript(source: scriptSource, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+        userContentController.addUserScript(userScript)
 
         let webView = WKWebView(frame: .zero, configuration: config)
 
